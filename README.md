@@ -69,9 +69,11 @@ The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serv
   - Box loss ≈ 1.05, Cls loss ≈ 0.7 within just 50 epochs.
   - Superior convergence and accuracy.
 
-**Figure 1**: Loss trends for YOLOv11n.  
-**Figure 2**: Loss trends for YOLOv11x.  
-![Loss Trends Placeholder](images/loss_trends.png)
+**Figure 1**: Loss trends for YOLOv11n:  
+![Loss Trends YOLOv11n](images/yolo_n_defult_ep150.png)
+
+**Figure 2**: Loss trends for YOLOv11x:  
+![Loss Trends YOLOv11x](images/yolo_x_SGD_bs84_is640_ep300.png)
 
 ---
 
@@ -112,7 +114,11 @@ The foundation of the real-time detection system relied on the YOLO model and Op
    -	Fast and efficient detection suitable for real-time applications.
    -	Lightweight implementation without requiring complex tracking algorithms.
 
-![Figure: Real-time detection output with bounding boxes and class labels.](images/real_time_output.png)
+The following images compare the real-time detection performance of YOLOv11n and YOLOv11x:
+
+![Real-time detection using YOLOv11n (poor performance)](images/real_time_deceting_model_n.png)
+
+![Real-time detection using YOLOv11x](images/real_time_detecting.png)
 
 
 ### 6.2. Adding Object Tracking with Trajectory Visualization
@@ -136,7 +142,7 @@ To enhance the system, object tracking was introduced using a custom implementat
 - Limitations:
    -	Basic tracking may lose object IDs during occlusion or fast movements.
 
-![Figure: Object tracking with trajectory visualization (colored lines for each object).](images/real_time_output.png)
+![Object tracking with trajectory visualization](images/real_time_tracking.png)
 
 
 ### 6.3. Object Locking and Directional Guidance
@@ -160,7 +166,7 @@ Building upon the tracking system, object locking and directional guidance were 
 - Future Improvements:
    -	Integrate DeepSORT to handle ID consistency and advanced trajectory prediction.
 
-![Figure: Object locking and directional guidance (arrows indicating movement directions).](images/real_time_output.png)
+![Object locking and directional guidance example](images/real_time_locking.png)
 
 ---
 
@@ -176,8 +182,11 @@ The system was evaluated using both quantitative metrics and qualitative observa
   - Conducted with a webcam and toy cars. Objects like car, van, and truck were consistently detected.
   - Observed occasional misclassification of truck due to dataset imbalance.
 
-**Figure**: Confusion matrix for YOLOv11x.  
-![Confusion Matrix Placeholder](images/confusion_matrix.png)
+**Figure**: The confusion matrices below illustrate the performance comparison between YOLOv11n and YOLOv11x:
+
+![Confusion matrix for YOLOv11n](images/yolo_n_defult_ep150_val_confusion_matrix.png)
+
+![Confusion matrix for YOLOv11x](images/yolo_x_SGD_bs16_is640_ep300_val_confusion_matrix.png)
 
 ---
 

@@ -32,6 +32,101 @@ This project implemented **YOLO-based** systems to evaluate their performance on
 
 ---
 
+## Challenges
+
+### Challenge 1: Dataset Label Formatting
+
+#### Problem:
+The raw annotation files from the VisDrone dataset were not in a format compatible with YOLO. For example, the raw label format for the first line was as follows:
+
+```txt
+684,8,273,116,0,0,0,0
+```
+- The columns represent x_min, y_min, width, height, class_id, ... with no normalization.
+
+- YOLO requires labels in the following format:
+
+```txt
+class_id center_x center_y width height
+```
+where all coordinates are normalized (scaled to the range `[0, 1]`).
+
+#### Steps Taken:
+- Developed a custom script to process the raw data:
+- Calculated the normalized center coordinates and dimensions using the image size:
+  ```python
+  center_x = (x_min + width / 2) / image_width
+  center_y = (y_min + height / 2) / image_height
+  norm_width = width / image_width
+  norm_height = height / image_height
+  ```
+- Converted the first line of the example into:
+  ```
+  0 0.7760416666666666 0.9027777777777778 0.07708333333333334 0.061111111111111116
+  ```
+
+#### Impact:
+- The initial training process failed due to errors in label formatting.
+- Debugging and reformatting ensured successful model training with a consistent dataset.
+
+---
+
+### Challenge 2: Tracking Issues and Code Modifications
+
+#### Problem:
+Using YOLO's official tracking code led to significant challenges:
+- Severe frame drops occurred, making real-time tracking infeasible.
+- Object trajectories reset frequently, resulting in inconsistent tracking and visualization.
+
+#### Steps Taken:
+- Analyzed and modified YOLO's tracking implementation:
+1. **Optimized Object ID Persistence**:
+   - Improved how object IDs were assigned and persisted across frames, especially during occlusions.
+2. **Trajectory Visualization Fixes**:
+   - Added a buffer to store recent positions of each object, ensuring smooth trajectory lines.
+   - Fixed bugs that caused trajectories to reset unnecessarily.
+3. **Reduced Computational Overhead**:
+   - Removed redundant calculations and improved frame processing efficiency.
+
+#### Impact:
+- Frame rate improved significantly, enabling smooth real-time tracking.
+- Object trajectories became consistent, accurately reflecting movement patterns.
+- The optimized system maintained stable performance even with multiple objects.
+
+---
+
+### Challenge 3: Object Lock and Track in Real-Time Detection
+
+#### Problem:
+During the third phase of real-time detection, challenges arose with object locking and directional guidance:
+1. **Mouse Input**:
+ - Mouse clicks were detected but often failed to lock onto the correct object due to proximity matching issues.
+2. **Locking Strategy**:
+ - Initially, there was no effective method to center a locked object in the frame.
+
+#### Steps Taken:
+1. **Refined Mouse Input Logic**:
+ - Adjusted proximity checks to ensure accurate matching between mouse clicks and tracked object positions.
+ - Used the object's most recent position to determine if it was close to the click point.
+2. **Implemented a Locking Strategy**:
+ - Defined a "center region" in the frame based on the frame dimensions (e.g., 20% of the width and height).
+ - Calculated offsets between the locked object's position and the center of the frame to provide directional guidance:
+   ```python
+   dx = x - center_x
+   dy = center_y - y
+   directions = []
+   if abs(dx) > threshold:
+       directions.append("Right" if dx > 0 else "Left")
+   if abs(dy) > threshold:
+       directions.append("Forward" if dy > 0 else "Backward")
+   ```
+
+#### Impact:
+- Mouse clicks now accurately locked onto objects, and directional guidance helped users center objects in the frame.
+- Added visual elements, such as arrows and labels, improved user interaction and usability.
+
+---
+
 ## 3. VisDrone Dataset
 
 The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serves as a benchmark for a wide range of vision tasks such as object detection, tracking, and segmentation.

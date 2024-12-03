@@ -8,7 +8,26 @@ This project implemented **YOLO-based** systems to evaluate their performance on
 
 ---
 
-## 2. Workflow Overview
+## 2. Aims
+
+### 1. Develop a Reliable Object Detection System
+The first aim of this project was to implement an object detection system using the YOLO model capable of accurately identifying objects in UAV imagery from the VisDrone dataset. The system was further optimized to improve accuracy and performance through:
+- Model selection and comparison between YOLOv11n and YOLOv11x.
+- Hyperparameter optimization to enhance detection accuracy and minimize losses.
+
+### 2. Develop a Real-Time Object Detection System
+The second aim was to optimize the reliable detection system for real-time performance. This involved:
+- Integrating the system with live video feeds from UAVs to enable real-time detection of vehicles, pedestrians, and other objects.
+- Adding functionalities such as object tracking, trajectory visualization, and directional guidance to improve the system's usability and robustness in real-world scenarios.
+
+### Achievements
+Both aims were successfully achieved:
+- A reliable detection system was implemented and validated using the VisDrone dataset, with YOLOv11x demonstrating superior accuracy and stability.
+- A real-time detection pipeline was developed, capable of processing live video inputs with consistent tracking and efficient performance, fulfilling the requirements for UAV-based applications.
+
+---
+
+## 3. Workflow Overview
 
 1. **Dataset Preparation**:
    - Used the VisDrone dataset containing diverse UAV-captured imagery.
@@ -32,7 +51,7 @@ This project implemented **YOLO-based** systems to evaluate their performance on
 
 ---
 
-## 3. VisDrone Dataset
+## 4. VisDrone Dataset
 
 The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serves as a benchmark for a wide range of vision tasks such as object detection, tracking, and segmentation.
 
@@ -48,7 +67,7 @@ The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serv
 
 ---
 
-## 4. YOLO Model Comparison
+## 5. YOLO Model Comparison
 
 | Aspect            | YOLOv11n                     | YOLOv11x                        |
 |--------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------|
@@ -77,7 +96,7 @@ The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serv
 
 ---
 
-## 5. Hyperparameter Optimization
+## 6. Hyperparameter Optimization
 
 Training Configurations:
 - Epochs: Initial testing with 50 epochs, extended to 100 epochs for final tests.
@@ -92,11 +111,11 @@ Key Findings:
 
 ---
 
-## 6. Real-Time Object Detection Implementation
+## 7. Real-Time Object Detection Implementation
 
 The real-time detection system was developed in three progressive stages, each adding complexity and functionality.
 
-### 6.1. Basic Real-Time Object Detection
+### 7.1. Basic Real-Time Object Detection
 
 The foundation of the real-time detection system relied on the YOLO model and OpenCV for webcam integration.
    
@@ -121,7 +140,7 @@ The following images compare the real-time detection performance of YOLOv11n and
 ![Real-time detection using YOLOv11x](images/real_time_detecting.png)
 
 
-### 6.2. Adding Object Tracking with Trajectory Visualization
+### 7.2. Adding Object Tracking with Trajectory Visualization
 
 To enhance the system, object tracking was introduced using a custom implementation combined with YOLO's track functionality.
 
@@ -145,7 +164,7 @@ To enhance the system, object tracking was introduced using a custom implementat
 ![Object tracking with trajectory visualization](images/real_time_tracking.png)
 
 
-### 6.3. Object Locking and Directional Guidance
+### 7.3. Object Locking and Directional Guidance
 
 Building upon the tracking system, object locking and directional guidance were implemented to allow interaction with specific objects.
 
@@ -170,7 +189,7 @@ Building upon the tracking system, object locking and directional guidance were 
 
 ---
 
-## 7. Challenges
+## 8. Challenges
 
 ### Challenge 1: Dataset Label Formatting
 
@@ -265,7 +284,7 @@ During the third phase of real-time detection, challenges arose with object lock
 
 ---
 
-## 8. Evaluation
+## 9. Evaluation
 
 The system was evaluated using both quantitative metrics and qualitative observations:
 
@@ -285,7 +304,7 @@ The system was evaluated using both quantitative metrics and qualitative observa
 
 ---
 
-## 9. Future Work
+## 10. Future Work
 
 1.	Accuracy Enhancements:
   - Explore 1D CNNs and advanced feature extraction methods.
@@ -297,7 +316,7 @@ The system was evaluated using both quantitative metrics and qualitative observa
 
 ---
 
-## 10. Conclusion
+## 11. Conclusion
 
 This project successfully developed a YOLO-based detection system capable of real-time object detection and tracking. YOLOv11x proved to be the superior model for the VisDrone dataset, achieving high accuracy and stable performance. The real-time system demonstrated promising results, forming a strong foundation for future UAV applications.
 

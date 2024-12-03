@@ -10,12 +10,12 @@ This project implemented **YOLO-based** systems to evaluate their performance on
 
 ## 2. Aims
 
-### 1. Develop a Reliable Object Detection System
+### 2.1. Develop a Reliable Object Detection System
 The first aim of this project was to implement an object detection system using the YOLO model capable of accurately identifying objects in UAV imagery from the VisDrone dataset. The system was further optimized to improve accuracy and performance through:
 - Model selection and comparison between YOLOv11n and YOLOv11x.
 - Hyperparameter optimization to enhance detection accuracy and minimize losses.
 
-### 2. Develop a Real-Time Object Detection System
+### 2.2. Develop a Real-Time Object Detection System
 The second aim was to optimize the reliable detection system for real-time performance. This involved:
 - Integrating the system with live video feeds from UAVs to enable real-time detection of vehicles, pedestrians, and other objects.
 - Adding functionalities such as object tracking, trajectory visualization, and directional guidance to improve the system's usability and robustness in real-world scenarios.

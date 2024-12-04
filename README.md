@@ -69,14 +69,15 @@ The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serv
 
 ## 5. YOLO Model Comparison
 
-| Aspect            | YOLOv11n                     | YOLOv11x                        |
-|--------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------|
-| Model Scale        | Smaller, designed for edge devices; fewer parameters (~4M).          | Largest in the YOLOv11 series, higher capacity with ~86M parameters.         |
-| Depth and Width    | Shallower architecture with reduced feature extraction layers.       | Deeper architecture and wider feature maps, enabling richer feature capture. |
-| Activation         | Uses LeakyReLU activation, which is computationally efficient.       | Incorporates Mish activation for smoother gradients and better performance.  |
-| Anchor-Free Design | Limited flexibility in handling varying object scales.               | Improved anchor-free design with dynamic anchor assignment.                  |
-| FPN and PAN Layers | Fewer layers, reducing feature aggregation efficiency.               | Enhanced FPN+PAN structure for multiscale feature fusion.                    |
-| Prediction Layers  | Simplified, leading to faster inference but less robust predictions. | More prediction layers, improving generalization and localization accuracy.  |
+| Aspect              | YOLOv5                                    | YOLOv11n                                    | YOLOv11x                                    |
+|---------------------|-------------------------------------------|---------------------------------------------|---------------------------------------------|
+| Model Scale         | Lightweight, suitable for resource-constrained scenarios (~7M parameters). | Smaller, designed for edge devices; fewer parameters (~4M). | Largest in the YOLOv11 series; high capacity (~86M parameters). |
+| Depth and Width     | 20 backbone layers, 5 neck layers, and 3 head layers. | 25 backbone layers, 7 neck layers, and 3 head layers. | 35 backbone layers, 10 neck layers, and 5 head layers. |
+| Activation          | Uses LeakyReLU activation for efficiency. | Uses Mish activation for smoother gradients and better stability. | Uses Mish activation for superior gradient flow and performance. |
+| Anchor-Free Design  | Anchor-based model with fixed anchor boxes. | Introduces Anchor-Free dynamic assignment for better scalability. | Advanced anchor-free dynamic assignment for improved performance. |
+| Backbone            | Incorporates CSPNet to reduce redundant gradients and improve efficiency. | Improved Focus module for efficient feature extraction. | Deeper backbone with CBAM for enhanced feature extraction. |
+| FPN and PAN Layers  | Basic FPN + PAN for feature fusion.        | Enhanced FPN + PAN for richer multiscale features.        | Enhanced FPN + PAN with additional layers for superior feature fusion. |
+| Prediction Layers   | Simplified, suitable for fast inference.  | Basic prediction structure, optimized for real-time tasks. | Multi-layer prediction structure for higher precision and robustness. |
 
 ### Performance Insights:
 
@@ -108,6 +109,34 @@ Key Findings:
 - Larger batch size improved results until memory limits.
 - SGD ensured stability and minimal overfitting.
 - Higher resolution increased computational cost without significant accuracy gain.
+
+
+- ### Optimizers
+
+To evaluate the impact of different optimizers on training performance, three optimizers were compared: **SGD**, **Adam**, and **AdamW**.
+
+- **SGD**:
+  - Provided the best overall results, achieving stable training and minimal overfitting.
+  - Loss trends indicate smooth convergence with consistent performance across epochs.
+  - **Figure**: Loss trends using SGD optimizer with YOLOv11n.
+    ![Loss Trends SGD Optimizer](images/yolo_n_SGD_ep50.png)
+
+- **AdamW**:
+  - Delivered moderate performance, balancing between speed and accuracy.
+  - Showed faster convergence than SGD but with slightly higher final loss values.
+  - **Figure**: Loss trends using AdamW optimizer with YOLOv11n.
+    ![Loss Trends AdamW Optimizer](images/yolo_n_AdamW_ep50.png)
+
+- **Adam**:
+  - Produced the poorest results, likely due to its tendency to overfit on the dataset.
+  - Loss trends reveal irregular convergence and higher final losses compared to SGD and AdamW.
+  - **Figure**: Loss trends using Adam optimizer with YOLOv11n.
+    ![Loss Trends Adam Optimizer](images/yolo_n_Adam_ep50.png)
+
+**Key Observations**:
+- **SGD** was the most effective optimizer, ensuring model stability and reliable performance.
+- While **AdamW** showed some promise, it did not outperform SGD in terms of final accuracy.
+- **Adam**, though efficient in terms of computational speed, struggled with overfitting and unstable convergence.
 
 ---
 

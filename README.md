@@ -105,38 +105,23 @@ Training Configurations:
 - Image Resolution: Tested resolutions from 640x640 to 720x720; 720x720 was chosen. There is not much difference between them, but the effect of 720*720 is better.
 - Optimizers: Compared SGD, Adam, and AdamW. SGD provided stable results. SGD has the best effect, which is better than the default optimizer of yolo. AdamW is in between. Adam’s result is the worst.
 
-Key Findings:
-- Larger batch size improved results until memory limits.
-- SGD ensured stability and minimal overfitting.
-- Higher resolution increased computational cost without significant accuracy gain.
-
-
-- ### Optimizers
-
-To evaluate the impact of different optimizers on training performance, three optimizers were compared: **SGD**, **Adam**, and **AdamW**.
-
+Optimizers Result Plots:
 - **SGD**:
-  - Provided the best overall results, achieving stable training and minimal overfitting.
-  - Loss trends indicate smooth convergence with consistent performance across epochs.
   - **Figure**: Loss trends using SGD optimizer with YOLOv11n.
     ![Loss Trends SGD Optimizer](images/yolo_n_SGD_ep50.png)
 
 - **AdamW**:
-  - Delivered moderate performance, balancing between speed and accuracy.
-  - Showed faster convergence than SGD but with slightly higher final loss values.
   - **Figure**: Loss trends using AdamW optimizer with YOLOv11n.
     ![Loss Trends AdamW Optimizer](images/yolo_n_AdamW_ep50.png)
 
 - **Adam**:
-  - Produced the poorest results, likely due to its tendency to overfit on the dataset.
-  - Loss trends reveal irregular convergence and higher final losses compared to SGD and AdamW.
   - **Figure**: Loss trends using Adam optimizer with YOLOv11n.
     ![Loss Trends Adam Optimizer](images/yolo_n_Adam_ep50.png)
 
-**Key Observations**:
-- **SGD** was the most effective optimizer, ensuring model stability and reliable performance.
-- While **AdamW** showed some promise, it did not outperform SGD in terms of final accuracy.
-- **Adam**, though efficient in terms of computational speed, struggled with overfitting and unstable convergence.
+Key Findings:
+- Larger batch size improved results until memory limits.
+- SGD ensured stability and minimal overfitting.
+- Higher resolution increased computational cost without significant accuracy gain.
 
 ---
 

@@ -58,7 +58,7 @@ The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serv
 - **Dataset Composition**:
   - Images: Contains over 10,209 static images and 288 video clips (261,908 frames).
   - Annotations: Includes over 2.6 million object instances with bounding boxes and attributes.
-  - Classes: 10 object categories, including pedestrians, bicycles, cars, vans, trucks, buses, and others.
+  - Classes: 10 object categories, including pedestrians, people, bicycles, cars, vans, trucks, tricycles, awning-tricycles, buses, and motors.
 
 - **Key Challenges**:
   - High Variability: Significant size variation in objects due to aerial perspective.
@@ -99,10 +99,10 @@ The VisDrone dataset, developed by the AISKYEYE team at Tianjin University, serv
 ## 6. Hyperparameter Optimization
 
 Training Configurations:
-- Epochs: Initial testing with 50 epochs, extended to 100 epochs for final tests.
+- Epochs: Initial testing with 50 epochs, extended to 100 epochs for final tests. 100 epochs is about the critical point of overfitting.
 - Batch Size: Ranged from 8 to 84, with 84 providing optimal results.
-- Image Resolution: Tested resolutions from 640x640 to 720x720; 640x640 was chosen.
-- Optimizers: Compared SGD, Adam, and AdamW. SGD provided stable results.
+- Image Resolution: Tested resolutions from 640x640 to 720x720; 720x720 was chosen. There is not much difference between them, but the effect of 720*720 is better.
+- Optimizers: Compared SGD, Adam, and AdamW. SGD provided stable results. SGD has the best effect, which is better than the default optimizer of yolo. AdamW is in between. Adam’s result is the worst.
 
 Key Findings:
 - Larger batch size improved results until memory limits.

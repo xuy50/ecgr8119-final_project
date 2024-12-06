@@ -1,5 +1,7 @@
 # Final Project: Exploring Object Detection Capabilities from UAV Aerial Perspectives with Deep Learning Tools
 
+**Model Files (/models)**: <i>The trained models for this project are available [here](https://drive.google.com/drive/folders/1ENEPAUgo5lqO8_2Ak8Nml7W7h9NiQktk?usp=sharing).</i>
+
 ## 1. Introduction
 
 Unmanned Aerial Vehicles (UAVs) are widely used in traffic monitoring, surveillance, and disaster relief. The challenges of accurate object detection from aerial imagery include varying object scales, cluttered environments, and altitude variations. Leveraging deep learning models like YOLO offers a promising solution for real-time object detection and tracking.
